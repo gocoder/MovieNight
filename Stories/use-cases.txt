@@ -1,0 +1,7 @@
+This is an app, which would show the current running movies . The user stories are as below - 
+1) User opens app and is displayed with a Splash screen (which is a background slideshow of the current 5-10 movie poster images. User can swipe to move to next screen. This screen also has a search box to search for specific movies.
+2) User sees a list of current running movies and can click on any entry to see the detail view.
+3) Detail view has 2 tabs - { This view is swipe-able to goto next or previous movie }   
+    3 - Info tab - Movie poster, details , ratings, cast (clickable).
+    3.5 - Showtimes tab -  List showing theater , address, showtimes.
+4) On clicking cast, detail view of Cast is shown - having, photo, description, list of movies starred by the cast.

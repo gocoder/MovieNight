@@ -1,4 +1,4 @@
-package com.gocoder.movienight.model;
+package com.gocoder.movienight.models;
 
 import java.util.ArrayList;
 

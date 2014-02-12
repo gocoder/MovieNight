@@ -4,5 +4,7 @@
     <string name="app_name">Movie Night</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="et_search_hint">Search</string>
+    <string name="btn_search_hint">Go</string>
 
 </resources>

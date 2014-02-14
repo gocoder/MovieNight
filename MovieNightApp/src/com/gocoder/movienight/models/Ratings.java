@@ -1,4 +1,4 @@
-package com.gocoder.movienight.model;
+package com.gocoder.movienight.models;
 
 /**
  * Created by ashishn on 2/10/14.

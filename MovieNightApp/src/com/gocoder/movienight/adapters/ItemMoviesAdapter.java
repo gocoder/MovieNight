@@ -20,7 +20,28 @@ public class ItemMoviesAdapter extends ArrayAdapter<ItemMovie> {
 	}
 	
 	@Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {	
+		View view = convertView;
+		if(view == null){
+			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			//LayoutInflater inflater = LayoutInflater.from(getContext());
+			view = inflater.inflate(R.layout.item_feed_movie,null);
+		}
+		ItemMovie movie = getItem(position);
+		TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+		TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
+		TextView tvCast = (TextView) view.findViewById(R.id.tvCast);
+		ImageView ivPosterImage = (ImageView) view.findViewById(R.id.ivPosterImage);
+        // Populate the data into the template view using the data object
+        tvTitle.setText(movie.getTitle());
+        tvCriticsScore.setText("Score: " + movie.getCriticsScore() + "%");
+        tvCast.setText(movie.getCastList());
+        ImageLoader.getInstance().displayImage(movie.getPosterUrl(), ivPosterImage);
+        // Return the completed view to render on screen
+        return view;
+		
+		
+		/*
         // Get the data item for this position
 		ItemMovie movie = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
@@ -40,6 +61,8 @@ public class ItemMoviesAdapter extends ArrayAdapter<ItemMovie> {
         ImageLoader.getInstance().displayImage(movie.getPosterUrl(), ivPosterImage);
         // Return the completed view to render on screen
         return convertView;
+        */
+		
 	}
 
 }

@@ -26,16 +26,19 @@ public class MovieIntent extends Activity {
         Intent i = getIntent();
         this.movie = MovieModel.fromJson(i.getStringExtra("movieID"));
         movieImage = (ImageView) findViewById(R.id.movieImage);
-        movieImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        movieImage.setScaleType(ImageView.ScaleType.FIT_START);
         //movieImage.setScaleType(ImageView.ScaleType.FIT_END);
+
         description = (TextView) findViewById(R.id.description);
         process();
     }
 
     private void process() {
-        Picasso.with(this).load(movie.getPosters().getOriginal()).into(movieImage);
+
         //ImageLoader.getInstance().displayImage(movie.getPosters().getOriginal(), movieImage);
         //ImageLoader.getInstance().
+        Picasso.with(this).load(movie.getPosters().getOriginal()).noFade().into(movieImage);
+
         description.setText(movie.getSynopsis());
     }
 

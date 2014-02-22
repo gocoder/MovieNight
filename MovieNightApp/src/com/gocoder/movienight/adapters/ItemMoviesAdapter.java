@@ -21,6 +21,8 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
+
+
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             //LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -36,7 +38,7 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
         tvTitle.setText(movie.getTitle());
         tvCriticsScore.setText("Score: " + movie.getRatings().getCritics_score() + "%");
         tvCast.setText(movie.getCast());
-
+        view.setTag(movie.getId());
         //System.out.println("imageurl=" + movie);
         ImageLoader.getInstance().displayImage(movie.getPosters().getProfile(), ivPosterImage);
         // Return the completed view to render on screen

@@ -129,7 +129,12 @@ public class MovieModel {
 
 
     public static MovieModel fromJson(JSONObject jsonObject) {
-        return new Gson().fromJson(jsonObject.toString(), MovieModel.class);
+        return fromJson(jsonObject.toString());
+    }
+
+
+    public static MovieModel fromJson(String jsonString) {
+        return new Gson().fromJson(jsonString, MovieModel.class);
     }
 
 

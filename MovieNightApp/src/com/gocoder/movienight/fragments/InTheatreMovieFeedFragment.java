@@ -19,7 +19,7 @@ public class InTheatreMovieFeedFragment extends FeedListFragment {
         new RottenTomatoesClient().getInTheatreMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {
-                JSONArray items = null;
+                JSONArray items;
                 try {
                     items = body.getJSONArray("movies");
                     Log.d("DEBUG", "In Theatre items=" + items.length());

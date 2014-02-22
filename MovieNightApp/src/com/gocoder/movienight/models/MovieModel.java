@@ -1,5 +1,9 @@
 package com.gocoder.movienight.models;
 
+import com.google.gson.Gson;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -103,5 +107,35 @@ public class MovieModel {
 
     public Links getLink() {
         return link;
+    }
+
+
+    public static MovieModel fromJson(JSONObject jsonObject) {
+        return new Gson().fromJson(jsonObject.toString(), MovieModel.class);
+    }
+
+
+    public static ArrayList<MovieModel> fromJson(JSONArray jsonArray) {
+        ArrayList<MovieModel> movies = new ArrayList<MovieModel>(jsonArray.length());
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject itemdata;
+            try {
+                itemdata = jsonArray.getJSONObject(i);
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+            MovieModel movie = MovieModel.fromJson(itemdata);
+            if (movie != null) {
+                movies.add(movie);
+            }
+        }
+
+        return movies;
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

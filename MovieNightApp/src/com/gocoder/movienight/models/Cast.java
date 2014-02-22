@@ -1,5 +1,7 @@
 package com.gocoder.movienight.models;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 /**
@@ -15,5 +17,10 @@ public class Cast {
 
     public ArrayList<String> getCharacters() {
         return characters;
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

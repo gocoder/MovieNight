@@ -35,9 +35,10 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
         // Populate the data into the template view using the data object
         tvTitle.setText(movie.getTitle());
         tvCriticsScore.setText("Score: " + movie.getRatings().getCritics_score() + "%");
-        tvCast.setText(movie.getAbridged_cast().toString());
-        System.out.println("imageurl=" + movie);
-        ImageLoader.getInstance().displayImage(movie.getThumbnail(), ivPosterImage);
+        tvCast.setText(movie.getCast());
+
+        //System.out.println("imageurl=" + movie);
+        ImageLoader.getInstance().displayImage(movie.getPosters().getProfile(), ivPosterImage);
         // Return the completed view to render on screen
         return view;
 

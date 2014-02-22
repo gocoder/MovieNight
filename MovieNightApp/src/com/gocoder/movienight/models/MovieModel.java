@@ -29,6 +29,12 @@ public class MovieModel {
     private ArrayList<Cast> abridged_directors;
     private String studio;
     private HashMap<String, String> alternate_ids;
+
+    public Posters getPosters() {
+        return posters;
+    }
+
+    private Posters posters;
     private Links link;
 
 
@@ -91,6 +97,18 @@ public class MovieModel {
 
     public ArrayList<Cast> getAbridged_cast() {
         return abridged_cast;
+    }
+
+    public String getCast() {
+        ArrayList<Cast> cast = abridged_cast;
+        StringBuffer result = new StringBuffer();
+        String delim = "";
+        for (Cast people : cast) {
+            result.append(delim);
+            result.append(people.getName());
+            delim = ",";
+        }
+        return result.toString();
     }
 
     public ArrayList<Cast> getAbridged_directors() {

@@ -23,22 +23,12 @@ public class MainMovieActivity extends FragmentActivity implements TabListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_movie);
-        //setupNavigationTabs();
-        setConfigurations();
-        //showHomeFeedView();
         setupNavigationTabs();
 
 
     }
 
-    private void setConfigurations() {
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().
-                cacheInMemory().cacheOnDisc().build();
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-                .defaultDisplayImageOptions(defaultOptions)
-                .build();
-        ImageLoader.getInstance().init(config);
-    }
+
 
     private void showHomeFeedView() {
         FragmentManager manager = getSupportFragmentManager();
@@ -58,12 +48,12 @@ public class MainMovieActivity extends FragmentActivity implements TabListener {
                 .setIcon(R.drawable.ic_boxoffice).setTabListener(this);
 
         Tab tabInTheatres = actionBar.newTab().setText("In Theatres")
-                .setTag("InheatreFragment")
+                .setTag("InTheatreFragment")
                 .setIcon(R.drawable.ic_in_theatres).setTabListener(this);
 
         actionBar.addTab(tabBoxOffice);
         actionBar.addTab(tabInTheatres);
-        actionBar.selectTab(tabBoxOffice);
+        actionBar.selectTab(tabInTheatres);
 
     }
 

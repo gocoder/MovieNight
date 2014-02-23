@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MovieIntent" android:label="MovieInfo"/>
+        <activity android:name="com.gocoder.movienight.activities.MovieInfoActivity" android:label="MovieInfo"/>
     </application>
 
 </manifest>

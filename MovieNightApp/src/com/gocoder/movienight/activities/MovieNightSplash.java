@@ -15,15 +15,19 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 /**
  * Created by arunsund on 2/22/14.
  */
 public class MovieNightSplash extends FragmentActivity  implements SwipeInterface
 {
     ImageView ivSplashView;
+    ArrayList<String> movieImages;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setConfigurations();
+        setMovieImages();
         getActionBar().hide();
         setContentView(R.layout.activity_splash_screen);
         ivSplashView = (ImageView) findViewById(R.id.ivSplashView);
@@ -31,6 +35,25 @@ public class MovieNightSplash extends FragmentActivity  implements SwipeInterfac
         ivSplashView.setVisibility(0);
         changeBg();
     }
+
+    private void setMovieImages() {
+        movieImages = new ArrayList<String>();
+        movieImages.add("http://www.hollywoodreporter.com/sites/default/files/imagecache/blog_post_349_width/2013/09/robocop_poster_p_2013.jpg");
+        movieImages.add("http://blogs-images.forbes.com/scottmendelson/files/2014/02/lego_a.jpg");
+        movieImages.add("http://www.thestranger.com/binary/b062/american-hustle-posters-sony.jpg");
+        movieImages.add("http://www.nerdist.com/wp-content/uploads/2014/02/monuments2.jpg");
+        movieImages.add("http://www.hdwallpapersin.com/files/submissions/jack_ryan_shadow_recruit_movie_wallpaper_2144723299.jpg");
+        movieImages.add("http://lastyearsgirl.pixlet.net/wp-content/uploads/2014/01/endless-love.jpg");
+        movieImages.add("http://7films.dendelionblu.me/images/2014/2/11//a-winters-tale.jpg");
+        movieImages.add("http://i2.cdn.turner.com/cnn/dam/assets/140214102432-about-last-night-kevin-hart-story-top.jpg");
+        movieImages.add("http://pop-verse.com/wp-content/uploads/2014/01/american-hustle.jpg");
+        movieImages.add("http://www.awn.com/sites/default/files/image/featured/1015650-imagineer-mocha-tracks-wolf-wall-street.jpg");
+        movieImages.add("http://img2.wikia.nocookie.net/__cb20131103205459/disney/images/6/66/Frozen_castposter.jpg");
+
+    }
+
+
+
     private void setConfigurations() {
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().
                 cacheInMemory().cacheOnDisc().build();

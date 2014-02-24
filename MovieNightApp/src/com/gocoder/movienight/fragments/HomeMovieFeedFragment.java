@@ -18,7 +18,7 @@ public class HomeMovieFeedFragment extends FeedListFragment {
         new RottenTomatoesClient().getBoxOfficeMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {
-                JSONArray items = null;
+                JSONArray items;
                 try {
                     items = body.getJSONArray("movies");
                     Log.d("DEBUG", "box office items=" + items.length());

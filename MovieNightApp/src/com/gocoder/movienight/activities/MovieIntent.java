@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.*;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.models.MovieModel;
 import com.squareup.picasso.Picasso;
@@ -52,13 +57,20 @@ public class MovieIntent extends Activity {
 //            }
 //        });
 
-        VideoView mVideoView = (VideoView) findViewById(R.id.trailer);
+        WebView mWebView = (WebView) findViewById(R.id.trailer);
 
-        mVideoView.setVideoURI(Uri.parse("http://www.videodetective.net/flash/players/?customerid=300120&playerid=632&publishedid=72288&playlistid=0&sub=Facebook&pversion=5.6"));
-        mVideoView.setMediaController(new MediaController(this));
-        mVideoView.requestFocus();
-        mVideoView.postInvalidateDelayed(100);
-        mVideoView.start();
+
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        mWebView.loadUrl("http://www.youtube.com/embed/" + "INmtQXUXez8" + "?autoplay=1&vq=small");
+        mWebView.setWebChromeClient(new WebChromeClient());
+
+//        videoUrl = getUrlVideoRTSP("");
+//        mVideoView.setVideoURI(Uri.parse("http://www.youtube.com/watch?v=0KSOMA3QBU0"));
+//        mVideoView.setMediaController(new MediaController(this));
+//        mVideoView.requestFocus();
+//        mVideoView.postInvalidateDelayed(100);
+//        mVideoView.start();
 
 
         //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.videodetective.net/flash/players/?customerid=300120&playerid=632&publishedid=72288&playlistid=0&sub=Facebook&pversion=5.6")));

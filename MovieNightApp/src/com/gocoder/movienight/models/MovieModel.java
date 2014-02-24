@@ -3,9 +3,11 @@ package com.gocoder.movienight.models;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -135,6 +137,18 @@ public class MovieModel {
     }
 
 
+    public static ArrayList<MovieModel> fromJsonList(String jsonObject) {
+
+        Type listType = new TypeToken<ArrayList<MovieModel>>() {
+        }.getType();
+
+        ArrayList<MovieModel> result = new Gson().fromJson(jsonObject, listType);
+
+        return result;
+
+    }
+
+
     public static MovieModel fromJson(String jsonString) {
         MovieModel result = null;
         try {
@@ -166,6 +180,7 @@ public class MovieModel {
 
         return movies;
     }
+
 
     @Override
     public String toString() {

@@ -1,145 +1,126 @@
 package com.gocoder.movienight.activities;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.Toast;
 import com.gocoder.movienight.R;
+import com.gocoder.movienight.fragments.MovieFragment;
 import com.gocoder.movienight.models.MovieModel;
-import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashishn on 2/21/14.
  */
-public class MovieIntent extends Activity {
+public class MovieIntent extends FragmentActivity {
 
-    MovieModel movie;
 
-    ImageView movieImage;
+    private ViewPager mPager;
 
-    TextView description;
+    ArrayList<MovieModel> movies;
 
-    ScrollView scrollView;
+    private int positionSelected;
 
+
+    @Override
+    public void onBackPressed() {
+        if (mPager.getCurrentItem() == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed();
+        } else {
+            // Otherwise, select the previous step.
+            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+        }
+    }
 
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.individual_movie);
+        setContentView(R.layout.moviepager);
         Intent i = getIntent();
+        this.movies = MovieModel.fromJsonList(i.getStringExtra("movieID"));
+        this.positionSelected = Integer.parseInt(i.getStringExtra("position"));
 
-        this.movie = MovieModel.fromJson(i.getStringExtra("movieID"));
-        Toast.makeText(getBaseContext(), Long.toString(movie.getId()), Toast.LENGTH_SHORT).show();
-        movieImage = (ImageView) findViewById(R.id.movieImage);
-        movieImage.setScaleType(ImageView.ScaleType.FIT_XY);
+        mPager = (ViewPager) findViewById(R.id.moviePager);
 
-        movieImage.setScaleType(ImageView.ScaleType.FIT_START);
+        mPager.setPageTransformer(true, new DepthPageTransformer());
 
-        description = (TextView) findViewById(R.id.description);
-        scrollView = (ScrollView) findViewById(R.id.ScrollView01);
-//        movieImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                try {
-//                    System.out.println("clips=" + movie.getLinks().getClips());
-//                    new RottenTomatoesClient().getTrailer(movie.getLinks().getClips());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
-        WebView mWebView = (WebView) findViewById(R.id.trailer);
+        Toast.makeText(this, Integer.toString(positionSelected), Toast.LENGTH_SHORT).show();
 
 
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        mWebView.loadUrl("http://www.youtube.com/embed/" + "INmtQXUXez8" + "?autoplay=1&vq=small");
-        mWebView.setWebChromeClient(new WebChromeClient());
+        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
-//        videoUrl = getUrlVideoRTSP("");
-//        mVideoView.setVideoURI(Uri.parse("http://www.youtube.com/watch?v=0KSOMA3QBU0"));
-//        mVideoView.setMediaController(new MediaController(this));
-//        mVideoView.requestFocus();
-//        mVideoView.postInvalidateDelayed(100);
-//        mVideoView.start();
+        mPager.setAdapter(mPagerAdapter);
 
-
-        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.videodetective.net/flash/players/?customerid=300120&playerid=632&publishedid=72288&playlistid=0&sub=Facebook&pversion=5.6")));
-
-        process();
-    }
-
-    private void process() {
-
-
-        Picasso.with(this).load(movie.getPosters().getOriginal()).into(movieImage);
-        description.setText(movie.getSynopsis());
+        mPager.setCurrentItem(positionSelected);
 
 
     }
 
 
-    private Bitmap getBlurBitmap(Bitmap src) {
-
-        final int widthKernal = 5;
-        final int heightKernal = 5;
-
-        int w = src.getWidth();
-        int h = src.getHeight();
-
-        Bitmap blurBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-
-        for (int x = 0; x < w; x++) {
-            for (int y = 0; y < h; y++) {
-
-                int r = 0;
-                int g = 0;
-                int b = 0;
-                int a = 0;
-
-                for (int xk = 0; xk < widthKernal; xk++) {
-                    for (int yk = 0; yk < heightKernal; yk++) {
-                        int px = x + xk - 2;
-                        int py = y + yk - 2;
-
-                        if (px < 0) {
-                            px = 0;
-                        } else if (px >= w) {
-                            px = w - 1;
-                        }
-
-                        if (py < 0) {
-                            py = 0;
-                        } else if (py >= h) {
-                            py = h - 1;
-                        }
-
-                        int intColor = src.getPixel(px, py);
-                        r += Color.red(intColor);
-                        g += Color.green(intColor);
-                        b += Color.blue(intColor);
-                        a += Color.alpha(intColor);
-
-                    }
-                }
-
-                blurBitmap.setPixel(x, y, Color.argb(a / 25, r / 25, g / 25, b / 25));
-
-            }
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
         }
 
-        return blurBitmap;
+        @Override
+        public Fragment getItem(int position) {
+            return new MovieFragment(movies.get(position));
+        }
+
+        @Override
+        public int getCount() {
+            return movies.size();
+        }
     }
 
+
+    class DepthPageTransformer implements ViewPager.PageTransformer {
+        private static final float MIN_SCALE = 0.75f;
+
+        public void transformPage(View view, float position) {
+            int pageWidth = view.getWidth();
+
+            view.setTranslationX(-1 * view.getWidth() * position);
+
+            if (position < -1) { // [-Infinity,-1)
+                // This page is way off-screen to the left.
+                view.setAlpha(0);
+
+            } else if (position <= 0) { // [-1,0]
+                // Use the default slide transition when moving to the left page
+                view.setAlpha(1);
+                view.setTranslationX(0);
+                view.setScaleX(1);
+                view.setScaleY(1);
+
+            } else if (position <= 1) { // (0,1]
+                // Fade the page out.
+                view.setAlpha(1 - position);
+
+                // Counteract the default slide transition
+                view.setTranslationX(pageWidth * -position);
+
+                // Scale the page down (between MIN_SCALE and 1)
+                float scaleFactor = MIN_SCALE
+                        + (1 - MIN_SCALE) * (1 - Math.abs(position));
+                view.setScaleX(scaleFactor);
+                view.setScaleY(scaleFactor);
+
+            } else { // (1,+Infinity]
+                // This page is way off-screen to the right.
+                view.setAlpha(0);
+            }
+        }
+    }
 
 }
 

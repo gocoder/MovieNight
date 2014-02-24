@@ -32,7 +32,7 @@ public class FeedListFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
-        ArrayList<MovieModel> movies = new ArrayList<MovieModel>();
+        final ArrayList<MovieModel> movies = new ArrayList<MovieModel>();
         final ListView lvFeeds = (ListView) getActivity().findViewById(R.id.lvFeeds);
         lvFeeds.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -41,7 +41,9 @@ public class FeedListFragment extends Fragment {
                 if ((Long) view.getTag() == -1L) {
                     Toast.makeText(getActivity(), "Unable to get Movie", Toast.LENGTH_SHORT).show();
                 }
-                movieIntent.putExtra("movieID", adapter.getItem(position).toString());
+                movieIntent.putExtra("movieID", movies.toString());
+
+                movieIntent.putExtra("position", Integer.toString(position));
                 startActivity(movieIntent);
                 getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

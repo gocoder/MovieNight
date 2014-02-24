@@ -18,6 +18,7 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
         super(context, 0, aMovies);
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;

@@ -3,7 +3,6 @@ package com.gocoder.movienight.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.gocoder.movienight.R;
-import com.gocoder.movienight.activities.MovieInfoActivity;
+import com.gocoder.movienight.activities.MovieIntent;
 import com.gocoder.movienight.adapters.ItemMoviesAdapter;
 import com.gocoder.movienight.models.MovieModel;
 
@@ -38,16 +37,12 @@ public class FeedListFragment extends Fragment {
         lvFeeds.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            	Log.d("DEBUG","Launching MovieIfoActivity");
-                Intent movieIntent = new Intent(getActivity(), MovieInfoActivity.class);
+                Intent movieIntent = new Intent(getActivity(), MovieIntent.class);
                 if ((Long) view.getTag() == -1L) {
-                	Log.d("DEBUG","Unable to get Movie");
-                    Toast.makeText(getActivity(), "Unable to get Movie", Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity(), "Unable to get Movie", Toast.LENGTH_SHORT).show();
                 }
-                //Log.d("DEBUG","MovieID="+adapter.getItem(position).toString());
                 movieIntent.putExtra("movieID", adapter.getItem(position).toString());
                 startActivity(movieIntent);
-                Log.d("DEBUG","Launched MovieIfoActivity");
                 getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });

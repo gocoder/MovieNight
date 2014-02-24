@@ -114,8 +114,7 @@ public class MovieIntent extends FragmentActivity {
                 view.setScaleX(scaleFactor);
                 view.setScaleY(scaleFactor);
 
-            } else { // (1,+Infinity]
-                // This page is way off-screen to the right.
+            } else {
                 view.setAlpha(0);
             }
         }

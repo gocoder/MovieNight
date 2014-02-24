@@ -28,14 +28,14 @@ public class MovieIntent extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
-            super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
+        finish();
+//        if (mPager.getCurrentItem() == 0) {
+//
+//            super.onBackPressed();
+//        } else {
+//
+//            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+//        }
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -103,10 +103,8 @@ public class MovieIntent extends FragmentActivity {
                 // Fade the page out.
                 view.setAlpha(1 - position);
 
-                // Counteract the default slide transition
                 view.setTranslationX(pageWidth * -position);
 
-                // Scale the page down (between MIN_SCALE and 1)
                 float scaleFactor = MIN_SCALE
                         + (1 - MIN_SCALE) * (1 - Math.abs(position));
                 view.setScaleX(scaleFactor);

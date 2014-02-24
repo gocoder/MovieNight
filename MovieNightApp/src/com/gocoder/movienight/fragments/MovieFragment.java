@@ -34,6 +34,7 @@ public class MovieFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.individual_movie, container, false);
 
 
@@ -51,6 +52,8 @@ public class MovieFragment extends Fragment {
 
         description = (TextView) getView().findViewById(R.id.description);
         scrollView = (ScrollView) getView().findViewById(R.id.ScrollView01);
+
+        scrollView.setSmoothScrollingEnabled(true);
         process();
 
     }

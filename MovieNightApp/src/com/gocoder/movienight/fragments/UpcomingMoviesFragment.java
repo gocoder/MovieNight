@@ -20,9 +20,7 @@ public class UpcomingMoviesFragment extends FeedListFragment {
 
     @Override
     public void loadMoreData(int page) {
-        if (page <= 16) {
-            return;
-        }
+
         new RottenTomatoesClient().getUpComingMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {
@@ -31,6 +29,9 @@ public class UpcomingMoviesFragment extends FeedListFragment {
                     items = body.getJSONArray("movies");
                     Log.d("DEBUG", "box office items=" + items.length());
                     ArrayList<MovieModel> movies = MovieModel.fromJson(items);
+                    if (repeatedlist(movies, adapter)) {
+                        return;
+                    }
                     getAdapter().addAll(movies);
                 } catch (JSONException e) {
                     e.printStackTrace();

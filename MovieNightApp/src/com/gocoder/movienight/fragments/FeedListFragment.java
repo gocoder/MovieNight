@@ -77,4 +77,8 @@ public abstract class FeedListFragment extends Fragment {
         return adapter;
     }
 
+
+    public boolean repeatedlist(ArrayList<MovieModel> movies, ItemMoviesAdapter adapter) {
+        return !(adapter.getCount() == 0 || movies.get(0).getId() != adapter.getItem(0).getId());
+    }
 }

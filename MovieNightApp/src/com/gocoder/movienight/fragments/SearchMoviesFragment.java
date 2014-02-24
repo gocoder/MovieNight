@@ -34,9 +34,7 @@ public class SearchMoviesFragment extends FeedListFragment {
 
     @Override
     public void loadMoreData(int page) {
-        if (page >= 30) {
-            return;
-        }
+
         new RottenTomatoesClient().searchMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {
@@ -46,6 +44,9 @@ public class SearchMoviesFragment extends FeedListFragment {
                     if (items.length() > 0) {
                         Log.d("DEBUG", "Movie Search Items=" + items.length());
                         ArrayList<MovieModel> movies = MovieModel.fromJson(items);
+                        if (repeatedlist(movies, adapter)) {
+                            return;
+                        }
                         if (movies.size() > 0) {
                             getAdapter().addAll(movies);
                         } else {

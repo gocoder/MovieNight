@@ -1,6 +1,8 @@
 package com.gocoder.movienight.models;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,10 +15,10 @@ import java.util.HashMap;
 public class MovieModel {
     private long id;
     private String title;
-    private int year;
+    private String year;
     private ArrayList<String> genres;
     private String mpaa_rating;
-    private int runtime;
+    private String runtime;
     private String critics_consensus;
     private ReleaseDate release_dates;
     private Ratings ratings;
@@ -35,7 +37,7 @@ public class MovieModel {
     }
 
     private Posters posters;
-    private Links link;
+    private Links links;
 
 
     public long getId() {
@@ -47,7 +49,7 @@ public class MovieModel {
         return title;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -59,7 +61,7 @@ public class MovieModel {
         return mpaa_rating;
     }
 
-    public int getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
@@ -123,8 +125,8 @@ public class MovieModel {
         return alternate_ids;
     }
 
-    public Links getLink() {
-        return link;
+    public Links getLinks() {
+        return links;
     }
 
 
@@ -134,7 +136,15 @@ public class MovieModel {
 
 
     public static MovieModel fromJson(String jsonString) {
-        return new Gson().fromJson(jsonString, MovieModel.class);
+        MovieModel result = null;
+        try {
+            result = new Gson().fromJson(jsonString, MovieModel.class);
+        } catch (JsonSyntaxException ex) {
+            ex.printStackTrace();
+        } catch (JsonParseException ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 
 

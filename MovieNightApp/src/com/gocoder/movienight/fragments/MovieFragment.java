@@ -3,6 +3,7 @@ package com.gocoder.movienight.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ public class MovieFragment extends Fragment {
     TextView description;
 
     ScrollView scrollView;
+
+    //Target target;
 
     public MovieFragment(MovieModel movieModel) {
         this.movie = movieModel;
@@ -54,6 +57,7 @@ public class MovieFragment extends Fragment {
         scrollView = (ScrollView) getView().findViewById(R.id.ScrollView01);
 
         scrollView.setSmoothScrollingEnabled(true);
+
         process();
 
     }
@@ -61,8 +65,30 @@ public class MovieFragment extends Fragment {
 
     private void process() {
 
+//        target = new Target() {
+//            @Override
+//            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom loadedFrom) {
+//                movieImage.setImageBitmap(bitmap);
+//            }
+//
+//            @Override
+//            public void onBitmapFailed(Drawable drawable) {
+//
+//                Toast.makeText(getActivity(), "error=", Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onPrepareLoad(Drawable drawable) {
+//
+//            }
+//        };
+
+
         Picasso.with(getActivity()).load(movie.getPosters().getOriginal()).into(movieImage);
+
         description.setText(movie.getSynopsis());
+
+        description.append(Html.fromHtml("<br/><br/><strong><em>Cast</em></strong>"));
 
     }
 

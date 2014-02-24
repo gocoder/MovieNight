@@ -68,8 +68,9 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
     }
 
     @Override
-    public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+    public void onTabReselected(Tab tab, FragmentTransaction ft) {
         // TODO Auto-generated method stub
+        renderSelectedTabView(tab);
 
     }
 

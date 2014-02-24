@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-        >
+              android:background="@color/base_bg_color">
 
     <ImageView
             android:layout_width="match_parent"
@@ -13,13 +13,14 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/ic_launcher"/>
     <TextView
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_above="@+id/ivSplashView"
-            android:layout_height="60dp"
             android:id="@+id/swipeText"
+            android:background="#000000"
             android:text="@string/swipe"
             style="@style/swipe_text"
             android:gravity="center"
-            />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
 </RelativeLayout>

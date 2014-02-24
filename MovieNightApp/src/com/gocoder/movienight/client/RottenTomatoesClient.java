@@ -55,10 +55,11 @@ public class RottenTomatoesClient {
         client.get(url, params, handler);
     }
 
-    public void searchMovies(JsonHttpResponseHandler handler, String query) {
+    public void searchMovies(JsonHttpResponseHandler handler, String query, int page) {
         String url = getApiUrl("movies.json");
         RequestParams params = new RequestParams("apikey", API_KEY_KEY);
         params.put("q", query);
+        params.put("page", intToString(page));
         client.get(url, params, handler);
     }
 

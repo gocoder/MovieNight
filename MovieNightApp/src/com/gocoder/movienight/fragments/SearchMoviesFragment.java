@@ -17,11 +17,23 @@ import java.util.ArrayList;
  */
 public class SearchMoviesFragment extends FeedListFragment {
     private String query;
-    public SearchMoviesFragment(String query){
+
+    public SearchMoviesFragment(String query) {
         this.query = query;
     }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadMoreData(0);
+
+    }
+
+    protected void showSearchError() {
+        Toast.makeText(getActivity().getApplicationContext(), "No movies matched your search", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void loadMoreData(int page) {
         new RottenTomatoesClient().searchMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {
@@ -31,10 +43,9 @@ public class SearchMoviesFragment extends FeedListFragment {
                     if (items.length() > 0) {
                         Log.d("DEBUG", "Movie Search Items=" + items.length());
                         ArrayList<MovieModel> movies = MovieModel.fromJson(items);
-                        if(movies.size()>0){
+                        if (movies.size() > 0) {
                             getAdapter().addAll(movies);
-                        }
-                        else{
+                        } else {
                             showSearchError();
                         }
                     } else {
@@ -44,9 +55,6 @@ public class SearchMoviesFragment extends FeedListFragment {
                     e.printStackTrace();
                 }
             }
-        }, this.query);
-    }
-    protected void showSearchError(){
-        Toast.makeText(getActivity().getApplicationContext(),"No movies matched your search", Toast.LENGTH_LONG).show();
+        }, this.query, page);
     }
 }

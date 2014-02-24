@@ -61,7 +61,7 @@ public class MovieIntent extends Activity {
         mVideoView.start();
 
 
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.videodetective.net/flash/players/?customerid=300120&playerid=632&publishedid=72288&playlistid=0&sub=Facebook&pversion=5.6")));
+        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.videodetective.net/flash/players/?customerid=300120&playerid=632&publishedid=72288&playlistid=0&sub=Facebook&pversion=5.6")));
 
         process();
     }

@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.Toast;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.fragments.MovieFragment;
 import com.gocoder.movienight.models.MovieModel;
@@ -53,7 +52,7 @@ public class MovieIntent extends FragmentActivity {
 
         mPager.setPageTransformer(true, new DepthPageTransformer());
 
-        Toast.makeText(this, Integer.toString(positionSelected), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, Integer.toString(positionSelected), Toast.LENGTH_SHORT).show();
 
 
         PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());

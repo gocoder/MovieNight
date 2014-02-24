@@ -34,6 +34,9 @@ public class SearchMoviesFragment extends FeedListFragment {
 
     @Override
     public void loadMoreData(int page) {
+        if (page >= 30) {
+            return;
+        }
         new RottenTomatoesClient().searchMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {

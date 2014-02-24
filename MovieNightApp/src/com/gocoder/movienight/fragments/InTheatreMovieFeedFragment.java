@@ -21,6 +21,9 @@ public class InTheatreMovieFeedFragment extends FeedListFragment {
 
     @Override
     public void loadMoreData(int page) {
+        if (page <= 16) {
+            return;
+        }
         new RottenTomatoesClient().getInTheatreMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {

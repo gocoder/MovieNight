@@ -57,6 +57,9 @@ public abstract class FeedListFragment extends Fragment {
         lvFeeds.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
+                if (page == 1) {
+                    return;
+                }
                 loadMoreData(page);
             }
         });

@@ -25,8 +25,6 @@ public class MovieIntent extends FragmentActivity {
 
     ArrayList<MovieModel> movies;
 
-    private int positionSelected;
-
 
     @Override
     public void onBackPressed() {
@@ -46,7 +44,7 @@ public class MovieIntent extends FragmentActivity {
         setContentView(R.layout.moviepager);
         Intent i = getIntent();
         this.movies = MovieModel.fromJsonList(i.getStringExtra("movieID"));
-        this.positionSelected = Integer.parseInt(i.getStringExtra("position"));
+        int positionSelected = Integer.parseInt(i.getStringExtra("position"));
 
         mPager = (ViewPager) findViewById(R.id.moviePager);
 

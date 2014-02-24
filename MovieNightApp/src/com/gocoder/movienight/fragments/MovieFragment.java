@@ -47,7 +47,8 @@ public class MovieFragment extends Fragment {
         movieImage = (ImageView) getView().findViewById(R.id.movieImage);
 
 
-        movieImage.setScaleType(ImageView.ScaleType.FIT_START);
+        movieImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
 
         description = (TextView) getView().findViewById(R.id.description);
         scrollView = (ScrollView) getView().findViewById(R.id.ScrollView01);

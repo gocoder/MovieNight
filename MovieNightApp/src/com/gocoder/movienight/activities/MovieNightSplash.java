@@ -53,6 +53,7 @@ public class MovieNightSplash extends FragmentActivity  implements SwipeInterfac
 
     }
     private void startAnimation(){
+        AnimationHandler.resetAnimation();
         AnimationHandler.animate(getApplicationContext(),ivSplashView,movieImages, 0);
     }
 

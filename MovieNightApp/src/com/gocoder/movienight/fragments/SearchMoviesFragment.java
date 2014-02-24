@@ -29,7 +29,7 @@ public class SearchMoviesFragment extends FeedListFragment {
     }
 
     protected void showSearchError() {
-        Toast.makeText(getActivity().getApplicationContext(), "No movies matched your search", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "No movies matched your search", Toast.LENGTH_LONG).show();
     }
 
     @Override

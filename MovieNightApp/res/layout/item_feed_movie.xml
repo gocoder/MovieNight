@@ -17,27 +17,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/ivPosterImage"
-        android:textSize="12sp" />
+        android:layout_toRightOf="@id/ivPosterImage"
+        android:textSize="12sp"
+        style="@style/bg_text"/>
+    <RatingBar
+            android:id="@+id/tvCriticsScore"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvTitle"
+            android:layout_below="@+id/tvTitle"
+            />
 
     <TextView
         android:id="@+id/tvCast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ivPosterImage"
-        android:layout_alignLeft="@+id/tvCriticsScore"
+        android:layout_alignLeft="@id/tvCriticsScore"
         android:gravity="bottom"
+        android:layout_below="@id/tvCriticsScore"
+        android:textSize="11sp"
+        style="@style/bg_text"
             />
 
-    <RatingBar
-            android:id="@+id/tvCriticsScore"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvTitle"
-        android:layout_below="@+id/tvTitle"
 
-
-            />
 
 </RelativeLayout>

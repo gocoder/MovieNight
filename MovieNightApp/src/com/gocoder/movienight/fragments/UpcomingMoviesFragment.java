@@ -11,11 +11,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HomeMovieFeedFragment extends FeedListFragment {
+public class UpcomingMoviesFragment extends FeedListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new RottenTomatoesClient().getBoxOfficeMovies(new JsonHttpResponseHandler() {
+        new RottenTomatoesClient().getUpComingMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {
                 JSONArray items;

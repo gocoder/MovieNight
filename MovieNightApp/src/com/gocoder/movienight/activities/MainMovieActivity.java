@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -12,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 import com.gocoder.movienight.R;
-import com.gocoder.movienight.fragments.HomeMovieFeedFragment;
+import com.gocoder.movienight.fragments.UpcomingMoviesFragment;
 import com.gocoder.movienight.fragments.InTheatreMovieFeedFragment;
 import com.gocoder.movienight.fragments.SearchMoviesFragment;
 
@@ -33,7 +34,7 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
     private void showHomeFeedView() {
         FragmentManager manager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fts = manager.beginTransaction();
-        fts.replace(R.id.frame_feed_container, new HomeMovieFeedFragment());
+        fts.replace(R.id.frame_feed_container, new UpcomingMoviesFragment());
         fts.commit();
 
     }
@@ -43,16 +44,17 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
         assert actionBar != null;
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(true);
-        Tab tabBoxOffice = actionBar.newTab().setText("Box Office")
-                .setTag("BoxOfficeFragment")
-                .setIcon(R.drawable.ic_boxoffice).setTabListener(this);
-
         Tab tabInTheatres = actionBar.newTab().setText("In Theatres")
                 .setTag("InTheatreFragment")
-                .setIcon(R.drawable.ic_in_theatres).setTabListener(this);
+                .setIcon(R.drawable.ic_action_theaters).setTabListener(this);
 
-        actionBar.addTab(tabBoxOffice);
+        Tab tabUpcoming = actionBar.newTab().setText("Upcoming")
+                .setTag("UpcomingFragment")
+                .setIcon(R.drawable.ic_action_upcoming).setTabListener(this);
+
         actionBar.addTab(tabInTheatres);
+        actionBar.addTab(tabUpcoming);
+
         actionBar.selectTab(tabInTheatres);
 
     }
@@ -81,8 +83,8 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
 
     }
     protected void renderSelectedTabView(Tab tab){
-        if (tab.getTag() == "BoxOfficeFragment") {
-            fragmentRender("BoxOfficeFragment",null);
+        if (tab.getTag() == "UpcomingFragment") {
+            fragmentRender("UpcomingFragment",null);
         } else if(tab.getTag() == "InTheatreFragment"){
             fragmentRender("InTheatreFragment",null);
         }
@@ -92,8 +94,8 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
         if(!model.isEmpty()){
             FragmentManager manager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fts = manager.beginTransaction();
-             if(model.equals("BoxOfficeFragment")){
-                fts.replace(R.id.frame_feed_container, new HomeMovieFeedFragment());
+             if(model.equals("UpcomingFragment")){
+                fts.replace(R.id.frame_feed_container, new UpcomingMoviesFragment());
              }
              else if(model.equals("InTheatreFragment")){
                 fts.replace(R.id.frame_feed_container, new InTheatreMovieFeedFragment());
@@ -138,6 +140,13 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
 
     protected boolean isAlwaysExpanded() {
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent data = new Intent();
+        setResult(RESULT_OK, data);
+        finish();
     }
 
 

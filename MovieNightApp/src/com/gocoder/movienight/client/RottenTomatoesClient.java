@@ -38,6 +38,12 @@ public class RottenTomatoesClient {
         client.get(url, params, handler);
     }
 
+    public void getUpComingMovies(JsonHttpResponseHandler handler) {
+        String url = getApiUrl("lists/movies/upcoming.json");
+        RequestParams params = new RequestParams("apikey", API_KEY_KEY);
+        client.get(url, params, handler);
+    }
+
     public void searchMovies(JsonHttpResponseHandler handler, String query) {
         String url = getApiUrl("movies.json");
         RequestParams params = new RequestParams("apikey", API_KEY_KEY);

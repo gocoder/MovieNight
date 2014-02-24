@@ -74,4 +74,7 @@ public class AnimationHandler {
     public static void stopAnimation(){
         stopAnimation = true;
     }
+    public static void resetAnimation(){
+        stopAnimation = false;
+    }
 }

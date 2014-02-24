@@ -45,7 +45,9 @@ public class FeedListFragment extends Fragment {
 
                 movieIntent.putExtra("position", Integer.toString(position));
                 startActivity(movieIntent);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
+                //getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         adapter = new ItemMoviesAdapter(getActivity(), movies);

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Toast;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.fragments.MovieFragment;
 import com.gocoder.movienight.models.MovieModel;
@@ -55,6 +56,8 @@ public class MovieIntent extends FragmentActivity {
         mPager.setAdapter(mPagerAdapter);
 
         mPager.setCurrentItem(positionSelected);
+
+        Toast.makeText(getBaseContext(), " Swipe  <---> to view more", Toast.LENGTH_LONG).show();
 
     }
 

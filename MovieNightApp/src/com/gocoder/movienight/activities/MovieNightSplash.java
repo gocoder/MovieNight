@@ -37,6 +37,7 @@ public class MovieNightSplash extends FragmentActivity  implements SwipeInterfac
     }
 
     private void setMovieImages() {
+        movieImages = new ArrayList<String>();
         movieImages.add("http://www.hollywoodreporter.com/sites/default/files/imagecache/blog_post_349_width/2013/09/robocop_poster_p_2013.jpg");
         movieImages.add("http://blogs-images.forbes.com/scottmendelson/files/2014/02/lego_a.jpg");
         movieImages.add("http://www.thestranger.com/binary/b062/american-hustle-posters-sony.jpg");

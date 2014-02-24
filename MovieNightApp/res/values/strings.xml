@@ -7,5 +7,6 @@
     <string name="et_search_hint">Search</string>
     <string name="btn_search_hint">Go</string>
     <string name="Image">Image</string>
+    <string name="swipe"><![CDATA[<< SWIPE >>]]></string>
 
 </resources>

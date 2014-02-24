@@ -16,6 +16,11 @@ public class InTheatreMovieFeedFragment extends FeedListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadMoreData(0);
+    }
+
+    @Override
+    public void loadMoreData(int page) {
         new RottenTomatoesClient().getInTheatreMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int code, JSONObject body) {
@@ -29,7 +34,7 @@ public class InTheatreMovieFeedFragment extends FeedListFragment {
                     e.printStackTrace();
                 }
             }
-        });
-    }
+        }, page);
 
+    }
 }

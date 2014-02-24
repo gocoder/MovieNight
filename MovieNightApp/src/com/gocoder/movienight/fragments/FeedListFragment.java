@@ -12,11 +12,12 @@ import android.widget.Toast;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.activities.MovieIntent;
 import com.gocoder.movienight.adapters.ItemMoviesAdapter;
+import com.gocoder.movienight.helpers.EndlessScrollListener;
 import com.gocoder.movienight.models.MovieModel;
 
 import java.util.ArrayList;
 
-public class FeedListFragment extends Fragment {
+public abstract class FeedListFragment extends Fragment {
     ItemMoviesAdapter adapter;
 
 
@@ -34,6 +35,8 @@ public class FeedListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         final ArrayList<MovieModel> movies = new ArrayList<MovieModel>();
         final ListView lvFeeds = (ListView) getActivity().findViewById(R.id.lvFeeds);
+
+
         lvFeeds.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -50,9 +53,22 @@ public class FeedListFragment extends Fragment {
                 //getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
+
+        lvFeeds.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                loadMoreData(page);
+            }
+        });
+
         adapter = new ItemMoviesAdapter(getActivity(), movies);
         lvFeeds.setAdapter(adapter);
+
+
     }
+
+    public abstract void loadMoreData(int page);
+
 
     public ItemMoviesAdapter getAdapter() {
         return adapter;

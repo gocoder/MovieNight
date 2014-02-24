@@ -32,15 +32,26 @@ public class RottenTomatoesClient {
         client.get(url, params, handler);
     }
 
-    public void getInTheatreMovies(JsonHttpResponseHandler handler) {
+    public void getInTheatreMovies(JsonHttpResponseHandler handler, int page) {
         String url = getApiUrl("lists/movies/in_theaters.json");
+
         RequestParams params = new RequestParams("apikey", API_KEY_KEY);
+
+        params.put("page", intToString(page));
+
         client.get(url, params, handler);
     }
 
-    public void getUpComingMovies(JsonHttpResponseHandler handler) {
+    private String intToString(int page) {
+        return Integer.toString(page);
+    }
+
+    public void getUpComingMovies(JsonHttpResponseHandler handler, int page) {
         String url = getApiUrl("lists/movies/upcoming.json");
+
         RequestParams params = new RequestParams("apikey", API_KEY_KEY);
+        params.put("page", intToString(page));
+
         client.get(url, params, handler);
     }
 

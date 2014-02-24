@@ -16,7 +16,7 @@ public class InTheatreMovieFeedFragment extends FeedListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadMoreData(0);
+        loadMoreData(1);
     }
 
     @Override

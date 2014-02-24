@@ -24,7 +24,7 @@ public class SearchMoviesFragment extends FeedListFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadMoreData(0);
+        loadMoreData(1);
 
     }
 

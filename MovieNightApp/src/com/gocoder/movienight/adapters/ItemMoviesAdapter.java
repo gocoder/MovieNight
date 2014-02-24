@@ -40,7 +40,7 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
         // Populate the data into the template view using the data object
         tvTitle.setText(movie.getTitle());
 
-        tvCriticsScore.setNumStars(movie.getRatings().getCritics_score() / 100);
+        tvCriticsScore.setNumStars((movie.getRatings().getCritics_score()) / 20);
 
         //tvCriticsScore.setText("Score: " + movie.getRatings().getCritics_score() + "%");
         tvCast.setText(movie.getCast());

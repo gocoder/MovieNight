@@ -49,7 +49,6 @@ public class MovieFragment extends Fragment {
 
         movieImage.setScaleType(ImageView.ScaleType.FIT_XY);
 
-
         description = (TextView) getView().findViewById(R.id.description);
         scrollView = (ScrollView) getView().findViewById(R.id.ScrollView01);
         process();
@@ -63,5 +62,6 @@ public class MovieFragment extends Fragment {
         description.setText(movie.getSynopsis());
 
     }
+
 
 }

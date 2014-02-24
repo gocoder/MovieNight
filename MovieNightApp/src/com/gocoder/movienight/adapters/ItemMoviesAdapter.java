@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.models.MovieModel;
@@ -32,12 +33,16 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
         MovieModel movie = getItem(position);
         assert view != null;
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
+        RatingBar tvCriticsScore = (RatingBar) view.findViewById(R.id.tvCriticsScore);
+
         TextView tvCast = (TextView) view.findViewById(R.id.tvCast);
         ImageView ivPosterImage = (ImageView) view.findViewById(R.id.ivPosterImage);
         // Populate the data into the template view using the data object
         tvTitle.setText(movie.getTitle());
-        tvCriticsScore.setText("Score: " + movie.getRatings().getCritics_score() + "%");
+
+        tvCriticsScore.setNumStars(movie.getRatings().getCritics_score() / 100);
+
+        //tvCriticsScore.setText("Score: " + movie.getRatings().getCritics_score() + "%");
         tvCast.setText(movie.getCast());
         view.setTag(movie.getId());
         //System.out.println("imageurl=" + movie);

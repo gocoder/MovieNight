@@ -50,15 +50,11 @@ public class MovieIntent extends FragmentActivity {
 
         mPager.setPageTransformer(true, new DepthPageTransformer());
 
-        //Toast.makeText(this, Integer.toString(positionSelected), Toast.LENGTH_SHORT).show();
-
-
         PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
         mPager.setAdapter(mPagerAdapter);
 
         mPager.setCurrentItem(positionSelected);
-
 
     }
 

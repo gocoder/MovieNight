@@ -1,6 +1,7 @@
 package com.gocoder.movienight.fragments;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,14 +20,21 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
 
     HashMap<Integer, String> videos = null;
 
+    private int movieID;
+
     public void init() {
         if (videos != null) {
             return;
         }
         videos = new HashMap<Integer, String>();
+        // robocop
         videos.put(770803774, "INmtQXUXez8");
-        videos.put(771373731, "fZ_JOBCLF-I");
-        videos.put(771249085, "jGEERBDelH8");
+
+        //lego
+        videos.put(771305753, "fZ_JOBCLF-I");
+
+        //300
+        videos.put(771249085, "2zqy21Z29ps");
     }
 
 
@@ -40,7 +48,9 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        init();
+        Intent i = getIntent();
+        this.movieID = Integer.parseInt(i.getStringExtra("movieid"));
         setContentView(R.layout.fragments_demo);
 
         YouTubePlayerFragment youTubePlayerFragment =
@@ -60,9 +70,11 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
                                         boolean wasRestored) {
 
         if (!wasRestored) {
-
-            player.cueVideo("INmtQXUXez8");
-            player.play();
+            //Toast.makeText(getBaseContext(),"playing"+videos.get(movieID),Toast.LENGTH_SHORT).show();
+            player.loadVideo(videos.get(movieID));
+            if (!player.isPlaying()) {
+                player.play();
+            }
         }
     }
 

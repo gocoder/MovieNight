@@ -50,6 +50,7 @@ public class MovieIntent extends FragmentActivity {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Intent i = new Intent(this, YouTubeActivity.class);
             Toast.makeText(getBaseContext(), Long.toString(movies.get(mPager.getCurrentItem()).getId()), Toast.LENGTH_SHORT).show();
+            i.putExtra("movieid", Long.toString(movies.get(mPager.getCurrentItem()).getId()));
             startActivity(i);
         }
 

@@ -28,6 +28,7 @@ public class MovieIntent extends FragmentActivity {
 
     ArrayList<MovieModel> movies;
 
+    PagerAdapter mPagerAdapter;
 
     @Override
     public void onBackPressed() {
@@ -48,6 +49,7 @@ public class MovieIntent extends FragmentActivity {
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Intent i = new Intent(this, YouTubeActivity.class);
+            Toast.makeText(getBaseContext(), Long.toString(movies.get(mPager.getCurrentItem()).getId()), Toast.LENGTH_SHORT).show();
             startActivity(i);
         }
 
@@ -68,7 +70,7 @@ public class MovieIntent extends FragmentActivity {
 
         mPager.setPageTransformer(true, new DepthPageTransformer());
 
-        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
         mPager.setAdapter(mPagerAdapter);
 
@@ -86,7 +88,9 @@ public class MovieIntent extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new MovieFragment(movies.get(position));
+            MovieFragment movie = new MovieFragment();
+            movie.setMovie(movies.get(position));
+            return movie;
         }
 
         @Override

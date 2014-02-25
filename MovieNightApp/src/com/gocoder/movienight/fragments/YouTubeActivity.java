@@ -10,10 +10,24 @@ import com.gocoder.movienight.helpers.YouTubeFailureRecoveryActivity;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 
+import java.util.HashMap;
+
 /**
  * Created by ashishn on 2/24/14.
  */
 public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
+
+    HashMap<Integer, String> videos = null;
+
+    public void init() {
+        if (videos != null) {
+            return;
+        }
+        videos = new HashMap<Integer, String>();
+        videos.put(770803774, "INmtQXUXez8");
+        videos.put(771373731, "fZ_JOBCLF-I");
+        videos.put(771249085, "jGEERBDelH8");
+    }
 
 
     @Override
@@ -31,6 +45,7 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
 
         YouTubePlayerFragment youTubePlayerFragment =
                 (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
+        assert youTubePlayerFragment != null;
         youTubePlayerFragment.initialize(DeveloperKey.DEVELOPER_KEY, this);
     }
 
@@ -45,6 +60,7 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
                                         boolean wasRestored) {
 
         if (!wasRestored) {
+
             player.cueVideo("INmtQXUXez8");
             player.play();
         }

@@ -34,10 +34,13 @@ public class MovieFragment extends Fragment {
 
     }
 
-
-    public MovieFragment(MovieModel movieModel) {
-        this.movie = movieModel;
+    public void setMovie(MovieModel movie) {
+        this.movie = movie;
     }
+
+//    public MovieFragment(MovieModel movieModel) {
+//        this.movie = movieModel;
+//    }
 
 
 //    @Override

@@ -4,12 +4,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/ScrollView01" android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            >
+            android:orientation="vertical"
+        >
 
     <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+            >
 
-        <ImageView
+    <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/movieImage"
@@ -29,8 +31,6 @@
                 android:textSize="15sp"
                 style="@style/bg_text"
                 />
-
-
 
 
     </RelativeLayout>

@@ -10,7 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.models.MovieModel;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,7 +46,8 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
         tvCast.setText(movie.getCast());
         view.setTag(movie.getId());
         //System.out.println("imageurl=" + movie);
-        ImageLoader.getInstance().displayImage(movie.getPosters().getProfile(), ivPosterImage);
+        Picasso.with(getContext()).load(movie.getPosters().getProfile()).into(ivPosterImage);
+        //ImageLoader.getInstance().displayImage(movie.getPosters().getProfile(), ivPosterImage);
         // Return the completed view to render on screen
         return view;
 

@@ -1,6 +1,8 @@
 package com.gocoder.movienight.fragments;
 
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -10,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.models.MovieModel;
 import com.squareup.picasso.Picasso;
+
 
 /**
  * Created by ashishn on 2/23/14.
@@ -29,8 +33,22 @@ public class MovieFragment extends Fragment {
 
     //Target target;
 
+    public MovieFragment() {
+
+    }
+
+
     public MovieFragment(MovieModel movieModel) {
         this.movie = movieModel;
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Toast.makeText(getActivity(), "orientationchanged", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getActivity(), FragmentDemoActivity.class);
+        startActivity(i);
+
     }
 
 
@@ -42,6 +60,7 @@ public class MovieFragment extends Fragment {
 
 
     }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -58,6 +77,7 @@ public class MovieFragment extends Fragment {
 
         scrollView.setSmoothScrollingEnabled(true);
 
+
         process();
 
     }
@@ -66,8 +86,18 @@ public class MovieFragment extends Fragment {
     private void process() {
 
 //        target = new Target() {
+//            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 //            @Override
 //            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom loadedFrom) {
+//                final RenderScript rs = RenderScript.create(getActivity());
+//                final Allocation input = Allocation.createFromBitmap(rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
+//                final Allocation output = Allocation.createTyped(rs, input.getType());
+//                final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+//                script.setRadius(50f /* e.g. 3.f */);
+//                script.setInput(input);
+//                script.forEach(output);
+//                output.copyTo(bitmap);
+//                //mo
 //                movieImage.setImageBitmap(bitmap);
 //            }
 //

@@ -1,6 +1,7 @@
 package com.gocoder.movienight.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
 import com.gocoder.movienight.R;
+import com.gocoder.movienight.fragments.FragmentDemoActivity;
 import com.gocoder.movienight.fragments.MovieFragment;
 import com.gocoder.movienight.models.MovieModel;
 
@@ -39,9 +41,27 @@ public class MovieIntent extends FragmentActivity {
 //        }
     }
 
-    public void onCreate(Bundle savedInstanceState) {
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Toast.makeText(this, "orientationchanged in movieinent", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, FragmentDemoActivity.class);
+        startActivity(i);
+
+    }
+
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "orientationchanged in movieinent", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, FragmentDemoActivity.class);
+            startActivity(i);
+            return;
+        }
+
         setContentView(R.layout.moviepager);
         Intent i = getIntent();
         this.movies = MovieModel.fromJsonList(i.getStringExtra("movieID"));

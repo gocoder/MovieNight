@@ -1,6 +1,7 @@
 package com.gocoder.movienight.fragments;
 
 import android.annotation.TargetApi;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import com.gocoder.movienight.R;
@@ -12,7 +13,14 @@ import com.google.android.youtube.player.YouTubePlayerFragment;
 /**
  * Created by ashishn on 2/24/14.
  */
-public class FragmentDemoActivity extends YouTubeFailureRecoveryActivity {
+public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        finish();
+    }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -28,8 +36,8 @@ public class FragmentDemoActivity extends YouTubeFailureRecoveryActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
+        finish();
     }
 
     @Override
@@ -37,8 +45,8 @@ public class FragmentDemoActivity extends YouTubeFailureRecoveryActivity {
                                         boolean wasRestored) {
 
         if (!wasRestored) {
-            //player.loadVideo("hulk trailer");
-            player.cueVideo("nCgQDjiotG0");
+            player.cueVideo("INmtQXUXez8");
+            player.play();
         }
     }
 

@@ -1,8 +1,6 @@
 package com.gocoder.movienight.fragments;
 
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.models.MovieModel;
 import com.squareup.picasso.Picasso;
@@ -43,13 +40,15 @@ public class MovieFragment extends Fragment {
     }
 
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        Toast.makeText(getActivity(), "orientationchanged", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(getActivity(), FragmentDemoActivity.class);
-        startActivity(i);
-
-    }
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            Toast.makeText(getActivity(), "orientationchanged", Toast.LENGTH_SHORT).show();
+//            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+//            startActivity(i);
+//        }
+//
+//    }
 
 
     @Override

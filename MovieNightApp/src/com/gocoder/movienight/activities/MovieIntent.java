@@ -12,8 +12,8 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
 import com.gocoder.movienight.R;
-import com.gocoder.movienight.fragments.FragmentDemoActivity;
 import com.gocoder.movienight.fragments.MovieFragment;
+import com.gocoder.movienight.fragments.YouTubeActivity;
 import com.gocoder.movienight.models.MovieModel;
 
 import java.util.ArrayList;
@@ -45,9 +45,12 @@ public class MovieIntent extends FragmentActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Toast.makeText(this, "orientationchanged in movieinent", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(this, FragmentDemoActivity.class);
-        startActivity(i);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Intent i = new Intent(this, YouTubeActivity.class);
+            startActivity(i);
+        }
+
 
     }
 
@@ -55,12 +58,6 @@ public class MovieIntent extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Toast.makeText(this, "orientationchanged in movieinent", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, FragmentDemoActivity.class);
-            startActivity(i);
-            return;
-        }
 
         setContentView(R.layout.moviepager);
         Intent i = getIntent();

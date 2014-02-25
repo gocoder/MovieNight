@@ -1,6 +1,7 @@
 package com.gocoder.movienight.fragments;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -119,6 +120,8 @@ public class MovieFragment extends Fragment {
         Picasso.with(getActivity()).load(movie.getPosters().getOriginal()).into(movieImage);
 
         description.setText(movie.getSynopsis());
+
+        description.setTypeface(Typeface.SANS_SERIF);
 
         description.append(Html.fromHtml("<br/><br/><strong><em>Cast</em></strong>"));
 

@@ -1,6 +1,7 @@
 package com.gocoder.movienight.fragments;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -22,6 +23,9 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
 
     private int movieID;
 
+
+    YouTubePlayerFragment youTubePlayerFragment;
+
     public void init() {
         if (videos != null) {
             return;
@@ -41,6 +45,9 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        youTubePlayerFragment.onDestroy();
+        //this.registerReceiver()
+        //unregisterReceiver();
         finish();
     }
 
@@ -52,8 +59,7 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
         Intent i = getIntent();
         this.movieID = Integer.parseInt(i.getStringExtra("movieid"));
         setContentView(R.layout.fragments_demo);
-
-        YouTubePlayerFragment youTubePlayerFragment =
+        youTubePlayerFragment =
                 (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
         assert youTubePlayerFragment != null;
         youTubePlayerFragment.initialize(DeveloperKey.DEVELOPER_KEY, this);
@@ -62,6 +68,9 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        youTubePlayerFragment.onDestroy();
+
+        //youTubePlayerFragment.unregisterForCo;
         finish();
     }
 
@@ -72,16 +81,30 @@ public class YouTubeActivity extends YouTubeFailureRecoveryActivity {
         if (!wasRestored) {
             //Toast.makeText(getBaseContext(),"playing"+videos.get(movieID),Toast.LENGTH_SHORT).show();
             player.loadVideo(videos.get(movieID));
+
             if (!player.isPlaying()) {
                 player.play();
             }
+
+
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected YouTubePlayer.Provider getYouTubePlayerProvider() {
         return (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
+    }
+
+    @Override
+    public void unregisterReceiver(BroadcastReceiver receiver) {
+        super.unregisterReceiver(receiver);
     }
 }
 

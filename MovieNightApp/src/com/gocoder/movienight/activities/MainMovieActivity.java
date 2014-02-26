@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import com.gocoder.movienight.R;
 import com.gocoder.movienight.fragments.UpcomingMoviesFragment;
@@ -20,12 +22,14 @@ import com.gocoder.movienight.fragments.SearchMoviesFragment;
 public class MainMovieActivity extends FragmentActivity implements TabListener, SearchView.OnQueryTextListener{
 
     private SearchView mSearchView;
+    private boolean searchingmode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_movie);
         setupNavigationTabs();
+        searchingmode = false;
 
     }
 
@@ -133,6 +137,11 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
         if(query.isEmpty()){
             return false;
         }
+        InputMethodManager imm = (InputMethodManager)getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+        searchingmode = true;
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         fragmentRender("SearchFragment", query);
         return true;
     }
@@ -144,9 +153,16 @@ public class MainMovieActivity extends FragmentActivity implements TabListener, 
 
     @Override
     public void onBackPressed() {
-        Intent data = new Intent();
-        setResult(RESULT_OK, data);
-        finish();
+        if(searchingmode ){
+            getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            getActionBar().selectTab(getActionBar().getTabAt(0));
+            searchingmode = false;
+        }
+        else{
+            Intent data = new Intent();
+            setResult(RESULT_OK, data);
+            finish();
+        }
     }
 
 

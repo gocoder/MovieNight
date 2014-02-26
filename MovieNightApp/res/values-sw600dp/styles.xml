@@ -21,4 +21,10 @@
     <style name="bg_text_cast" parent="bg_text">
         <item name="android:textSize">16sp</item>
     </style>
+    <style name="bg_text_detail_rating" parent="bg_text">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="bg_text_detail_desc" parent="bg_text">
+        <item name="android:textSize">22sp</item>
+    </style>
 </resources>

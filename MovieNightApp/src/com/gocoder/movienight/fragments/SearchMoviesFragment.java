@@ -61,4 +61,5 @@ public class SearchMoviesFragment extends FeedListFragment {
             }
         }, this.query, page);
     }
+
 }

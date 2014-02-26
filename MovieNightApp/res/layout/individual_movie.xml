@@ -5,12 +5,13 @@
             android:id="@+id/ScrollView01" android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
+            android:background="@drawable/rounded_2"
 
         >
 
     <RelativeLayout android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded"
+
 
             >
 
@@ -37,7 +38,7 @@
 
     	<TextView
     	    android:id="@+id/tvCriticsRatings"
-    	    style="@style/bg_text"
+    	    style="@style/bg_text_detail_rating"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:layout_alignParentLeft="true"
@@ -45,7 +46,7 @@
     	    android:layout_marginTop="10dp"
     	    android:paddingLeft="20dp"
     	    android:text="@string/critics_ratings_label"
-    	    android:textSize="15sp" />
+    	     />
     	
     	<RatingBar
             android:id="@+id/tvCriticsScore"
@@ -60,7 +61,6 @@
     	
     	<TextView
     	    android:id="@+id/tvUsersRatings"
-    	    style="@style/bg_text"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:layout_alignParentLeft="true"
@@ -68,7 +68,8 @@
     	    android:layout_marginTop="10dp"
     	    android:paddingLeft="20dp"
     	    android:text="@string/users_ratings_label"
-    	    android:textSize="15sp" />
+            style="@style/bg_text_detail_rating"
+    	     />
     	
     	<RatingBar
             android:id="@+id/tvUsersScore"
@@ -91,8 +92,7 @@
                 android:layout_below="@+id/tvUsersScore"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:textSize="15sp"
-                style="@style/bg_text"
+                style="@style/bg_text_detail_desc"
                 />
 
        

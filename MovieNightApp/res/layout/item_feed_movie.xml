@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp" >
+    android:padding="10dp"
+    android:background="#33000000">
 
     <ImageView
         android:id="@+id/ivPosterImage"
@@ -18,8 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@id/ivPosterImage"
-        android:textSize="12sp"
-        style="@style/bg_text"/>
+        style="@style/bg_text_title"/>
     <RatingBar
             android:id="@+id/tvCriticsScore"
             style="?android:attr/ratingBarStyleSmall"
@@ -36,8 +36,7 @@
         android:layout_alignLeft="@id/tvCriticsScore"
         android:gravity="bottom"
         android:layout_below="@id/tvCriticsScore"
-        android:textSize="11sp"
-        style="@style/bg_text"
+        style="@style/bg_text_cast"
             />
 
 

@@ -78,6 +78,14 @@ public class MovieModel {
     public Ratings getRatings() {
         return ratings;
     }
+    
+    public int getUsersStars() {
+        return ((ratings.getAudience_score()/20) +1);
+    }
+    
+    public int getCriticsStars() {
+        return ((ratings.getCritics_score()/20) +1);
+    }
 
     public String getSynopsis() {
         return synopsis;

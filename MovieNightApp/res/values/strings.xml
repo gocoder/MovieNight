@@ -8,5 +8,7 @@
     <string name="btn_search_hint">Go</string>
     <string name="Image">Image</string>
     <string name="swipe"><![CDATA[<<   SWIPE   >>]]></string>
+    <string name="critics_ratings_label">"Critics Rating: "</string>
+    <string name="users_ratings_label">"Users Rating: "</string>
 
 </resources>

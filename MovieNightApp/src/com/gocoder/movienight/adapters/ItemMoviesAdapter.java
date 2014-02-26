@@ -1,6 +1,7 @@
 package com.gocoder.movienight.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,9 @@ public class ItemMoviesAdapter extends ArrayAdapter<MovieModel> {
         // Populate the data into the template view using the data object
         tvTitle.setText(movie.getTitle());
 
-        tvCriticsScore.setNumStars((movie.getRatings().getCritics_score()) / 20);
+        //tvCriticsScore.setNumStars((movie.getRatings().getCritics_score()) / 20);
+        Log.d("DEBUG","Movie="+movie.getTitle()+"     Users Stars: "+movie.getUsersStars());
+        tvCriticsScore.setNumStars(movie.getUsersStars());
 
         //tvCriticsScore.setText("Score: " + movie.getRatings().getCritics_score() + "%");
         tvCast.setText(movie.getCast());

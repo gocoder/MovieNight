@@ -31,18 +31,18 @@
                 android:textSize="30sp"
                 style="@style/bg_text"
                 />
+
     	<TextView
-    	    	android:layout_below="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvCriticsRatings"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentLeft="true"
-                android:paddingLeft="20dp"
-                android:textSize="15sp"
-                android:text="Critics Rating: "
-                style="@style/bg_text"
-                />
+    	    android:id="@+id/tvCriticsRatings"
+    	    style="@style/bg_text"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentLeft="true"
+    	    android:layout_below="@+id/tvTitle"
+    	    android:layout_marginTop="10dp"
+    	    android:paddingLeft="20dp"
+    	    android:text="@string/critics_ratings_label"
+    	    android:textSize="15sp" />
     	
     	<RatingBar
             android:id="@+id/tvCriticsScore"
@@ -53,21 +53,19 @@
             android:layout_below="@+id/tvTitle"
             android:layout_toRightOf="@+id/tvCriticsRatings"
             android:layout_marginTop="10dp"
-            android:paddingRight="20dp"
          />
     	
     	<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvUsersRatings"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/tvCriticsRatings"
-                android:paddingLeft="20dp"
-                android:textSize="15sp"
-                android:text="Users Rating: "
-                style="@style/bg_text"
-                />
+    	    android:id="@+id/tvUsersRatings"
+    	    style="@style/bg_text"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentLeft="true"
+    	    android:layout_below="@+id/tvCriticsRatings"
+    	    android:layout_marginTop="10dp"
+    	    android:paddingLeft="20dp"
+    	    android:text="@string/users_ratings_label"
+    	    android:textSize="15sp" />
     	
     	<RatingBar
             android:id="@+id/tvUsersScore"
@@ -78,7 +76,6 @@
             android:layout_below="@+id/tvCriticsScore"
             android:layout_toRightOf="@+id/tvUsersRatings"
             android:layout_marginTop="10dp"
-            android:paddingRight="20dp"
          />
     	
     	

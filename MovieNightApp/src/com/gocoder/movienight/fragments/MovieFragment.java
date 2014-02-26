@@ -133,20 +133,31 @@ public class MovieFragment extends Fragment {
     	Log.d("DEBUG","MPAA Ratings: "+movie.getMpaa_rating());
     	Log.d("DEBUG","User Ratings: "+movie.getRatings().getAudience_score());
     	Log.d("DEBUG","Critics Ratings: "+movie.getRatings().getCritics_score());
-    	
-        Picasso.with(getActivity()).load(movie.getPosters().getOriginal()).into(movieImage);
+    	Log.d("DEBUG","Users Stars: "+movie.getUsersStars());
+    	Log.d("DEBUG","Critics Stars: "+movie.getCriticsStars());
+        
+    	Picasso.with(getActivity()).load(movie.getPosters().getOriginal()).into(movieImage);
 
         tvTitle.append(Html.fromHtml("<br/><strong>"+movie.getTitle()+"</strong>"));
-        tvCriticsScore.setNumStars(movie.getRatings().getCritics_score()/20);
-        tvUsersScore.setNumStars(movie.getRatings().getAudience_score()/20);
+        //tvCriticsScore.setNumStars(movie.getRatings().getCritics_score()/20);
+        //tvUsersScore.setNumStars(movie.getRatings().getAudience_score()/20);
+        tvCriticsScore.setNumStars(movie.getCriticsStars());
+        tvUsersScore.setNumStars(movie.getUsersStars());
         
-        description.append(Html.fromHtml("<br/><br/><strong><em>Synopsis: </em></strong>"));
+        description.append(Html.fromHtml("<br/><br/><strong><em>Synopsis </em></strong>"));
         description.append(movie.getSynopsis());
 
         description.setTypeface(Typeface.SANS_SERIF);
 
-        description.append(Html.fromHtml("<br/><br/><strong><em>Cast</em></strong>"));
-
+        description.append(Html.fromHtml("<br/><br/><strong><em>Cast </em></strong>"));
+        description.append(movie.getCast());
+        
+        description.append(Html.fromHtml("<br/><br/><strong><em>Runtime </em></strong>"));
+        description.append(movie.getRuntime() + " min");
+        
+        description.append(Html.fromHtml("<br/><br/><strong><em>MPAA Rating </em></strong>"));
+        description.append(movie.getMpaa_rating());
+        description.append(Html.fromHtml("<br/><br/>"));
     }
 
 

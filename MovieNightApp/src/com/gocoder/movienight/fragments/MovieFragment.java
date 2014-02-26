@@ -78,8 +78,8 @@ public class MovieFragment extends Fragment {
         movieImage = (ImageView) getView().findViewById(R.id.movieImage);
 
 
-        movieImage.setScaleType(ImageView.ScaleType.FIT_XY);
-        
+        //movieImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
         tvTitle = (TextView) getView().findViewById(R.id.tvTitle);
         tvCriticsScore = (RatingBar) getView().findViewById(R.id.tvCriticsScore);
         tvUsersScore = (RatingBar) getView().findViewById(R.id.tvUsersScore);
